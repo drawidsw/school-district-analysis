@@ -54,7 +54,7 @@ per_school_passing_reading = per_school_passing_reading.groupby(["school_name"])
 A snapshot of per-school summary is shown as below.
 ![image_name](Images/per_school.png)
 
-## Further Analysis
+## Per School Breakdown
 There are four attributes of each school which could influence the passing percentages:
 * Grade level
 * Budget per student
@@ -69,3 +69,29 @@ For the second and third attributes, since they are **ranges**, we apply a bucke
 | (585, 630] | 4 |
 | (630, 645] | 4 |
 | (645, 675] | 3 |
+
+Similarly, for the **number of students** atttibute, the following buckets are chosen:
+
+| Number of students (range) | Number of Schools | 
+| -------------------------- |-------------------|
+| < 1000, small | 2 |
+| (1000, 2000], medium | 5 |
+| > 2000, large | 8 |
+
+The implementation for bucket division in Jupyter is as follows:
+* Define a bucket using two lists - in the first list, values are chosen (indicating endpoints of each bucket) and the second list contains bucket identifiers.
+* Add a new column to the Dataframe using the **pd.cut()** function. The values in this column are assigned from the bucket labels.
+
+Finally, data is now summarized using the **groupby** function along the newly created bucket labels (as opposed to school names). The code below demonstrates for example how average math scores are calculated according to the school size.
+
+```
+# Establish the bins.
+size_bins = [0, 1000, 2000, 5000]
+group_names = ["Small (<1000)", "Medium (1000-2000)", "Large (2000-5000)"]
+
+# Categorize spending based on the bins.
+per_school_summary_df["School Size"] = pd.cut(per_school_summary_df["Total Students"], size_bins, labels=group_names)
+
+# Calculate averages for the desired columns. 
+size_math_scores = per_school_summary_df.groupby(["School Size"]).mean()["Average Math Score"]
+```
