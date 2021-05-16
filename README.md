@@ -28,4 +28,6 @@ Using Python's pandas module and the Jupyter notebook gives us several advantage
 * Jupyter and python are available for free.
 
 ## Working with datasets
-We are given two datasets in the csv format. One containing schools and the second containing students. In total, there are 15 schools and 39,170 students. The first step is to load these datasets in pandas **dataframes**, and **join** them in a single dataframe (this is Excel's equivalent of Vlookup, or the sql equivalent of join). The key to join them on is the **school_name**.
+We are given two datasets in the csv format. One containing schools and the second containing students. In total, there are 15 schools and 39,170 students. The first step is to load these datasets in pandas **dataframes**, and **join** them in a single dataframe (this is Excel's equivalent of Vlookup, or the sql equivalent of join). The key to join them on is the **school_name**. The following image displays the code and the output (the top five rows only) of the complete dataframe.
+
+![image_name](Images/school_data_complete.png)
