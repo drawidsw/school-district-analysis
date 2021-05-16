@@ -54,3 +54,18 @@ per_school_passing_reading = per_school_passing_reading.groupby(["school_name"])
 A snapshot of per-school summary is shown as below.
 ![image_name](Images/per_school.png)
 
+## Further Analysis
+There are four attributes of each school which could influence the passing percentages:
+* Grade level
+* Budget per student
+* Number of students
+* School type
+
+For the second and third attributes, since they are **ranges**, we apply a bucketing strategy. Buckets are chosen in a manner to ensure fair distribution of schools. For the **budget per student** attribute, the following buckets are chosen:
+
+| Budget per Student Range ($) | Number of Schools | 
+| ---------------------------- |-------------------|
+| (0, 585] | 4 |
+| (585, 630] | 4 |
+| (630, 645] | 4 |
+| (645, 675] | 3 |
