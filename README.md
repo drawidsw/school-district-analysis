@@ -27,7 +27,28 @@ Using Python's pandas module and the Jupyter notebook gives us several advantage
 * Jypyter offers an integrated environment for coding and visualizing the output in a single pane.
 * Jupyter and python are available for free.
 
-## Working with datasets
+## Creating a Complete Dataframe
 We are given two datasets in the csv format. One containing schools and the second containing students. In total, there are 15 schools and 39,170 students. The first step is to load these datasets in pandas **dataframes**, and **join** them in a single dataframe (this is Excel's equivalent of Vlookup, or the sql equivalent of join). The key to join them on is the **school_name**. The following image displays the code and the output (the top five rows only) of the complete dataframe.
 
 ![image_name](Images/school_data_complete.png)
+
+## Creating District Analysis
+The district analysis is created using passing score condition (>=70) across all students. Summary results are calculated and displayed in a single dataframe. The district summary is shown below.
+![image_name](Images/district_summary.png)
+
+## Per School Summary
+The per school summary is calculated by applying the **groupby** function to a series in the dataframe in question (equivalent to Excel's pivot table or Sql's groupby function). Since the summary is requited to be calculated over each school, the **groupby** function is applied to the **school_name** index. In the code below, the pattern applied to calculate number of students passing math and reading grouped by each school is as follows:
+* Filter the original data set to only keep passing students (Excel's equivalent of filter)
+* Apply groupby and the aggregating function **count** to get counts per school.
+
+```
+# Calculate the passing scores by creating a filtered DataFrame.
+per_school_passing_math = school_data_complete_df[(school_data_complete_df["math_score"] >= 70)]
+per_school_passing_reading = school_data_complete_df[(school_data_complete_df["reading_score"] >= 70)]
+
+# Calculate the number of students passing math and passing reading by school.
+per_school_passing_math = per_school_passing_math.groupby(["school_name"]).count()["student_name"]
+per_school_passing_reading = per_school_passing_reading.groupby(["school_name"]).count()["student_name"]
+```
+
+A snapshot of per-school summary is shown as below.
