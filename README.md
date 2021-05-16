@@ -19,28 +19,29 @@ Ultimately, the goal of the exercise is to determine if any (or several) of the 
 
 We used the Jupyter notebook and Python's pandas module to analyze the data. In a nitshell, the pandas model provides us with:
 
-* Dataframes: A dataframe is a table where each row is indexed. This is Excel's equivalent of a spreadsheet.
-* Series: A series is a specific column from the dataframe, where each entry is indexed as well. This is Excel's equivalent of a column.
+* Dataframes: A dataframe is a table where each row is indexed. This is the equivalent of an Excel spreadsheet.
+* Series: A series is a specific column from the dataframe, where each entry is indexed as well. This is the equivalent of an Excel column.
 * A lot of utility functions to manipulate dataframes and series.
 
 Using Python's pandas module and the Jupyter notebook gives us several advantages over using Excel. Some of them are listed below.
-* Python is a widespread and a general purpose programming language with a lot of inbuilt support for various data structrutes (such as lists, tuples, dictionaries), string manipulation and offers many add-on packages. Python is superior to VBA (Excel's programming language) in that regard.
+* Python is a widespread and a general purpose programming language with a lot of inbuilt support for various data structrutes (such as lists, tuples, dictionaries), string manipulation and offers many add-on packages. Because of the rich ecosystem around Python and its ability to suport external packages and import them seamlessly, it is superior to Excel's programming language - VBA.
 * Jypyter offers an integrated environment for coding and visualizing the output in a single pane.
 * Jupyter and python are available for free.
+* While not proven conclusively, execution of Python code in Jupyter is more performant than the execution of the VBA code in Excel.
 
 ## Creating a Complete Dataframe
-We are given two datasets in the csv format. One containing schools and the second containing students. In total, there are 15 schools and 39,170 students. The first step is to load these datasets in pandas **dataframes**, and **join** them in a single dataframe (this is Excel's equivalent of Vlookup, or the sql equivalent of join). The key to join them on is the **school_name**. The following image displays the code and the output (the top five rows only) of the complete dataframe.
+We are given two datasets in the csv format. The first contains information on schools and the second contains information on students. In total, there are 15 schools and 39,170 students. The first step is to load these datasets in pandas **dataframes**, and **join** them in a single dataframe (similar to Excel's Vlookup or Sql's join). The key to join them on is the **school_name**. The following image displays the code and the output (the top five rows only) of the complete dataframe.
 
 ![image_name](Images/school_data_complete.png)
 
 ## Creating District Analysis
-The district analysis is created using passing score condition (>=70) across all students. Summary results are calculated and displayed in a single dataframe. The district summary is shown below.
+The district analysis is created using passing score conditions (>=70) across all students for both math and reading. Summary results are calculated and displayed in a single dataframe. The district summary is shown below.
 ![image_name](Images/district_summary.png)
 
 ## Per School Summary
-The per school summary is calculated by applying the **groupby** function to a series in the dataframe in question (equivalent to Excel's pivot table or Sql's groupby function). Since the summary is requited to be calculated over each school, the **groupby** function is applied to the **school_name** index. In the code below, the pattern applied to calculate number of students passing math and reading grouped by each school is as follows:
-* Filter the original data set to only keep passing students (Excel's equivalent of filter)
-* Apply groupby and the aggregating function **count** to get counts per school.
+The per school summary is calculated by applying the **groupby** function to a series in the dataframe in question (similar to Excel's pivot table or Sql's groupby function). Since the summary is requited to be calculated over each school, the **groupby** function is applied to the **school_name** index. In the code below, the pattern applied to calculate number of students passing math and reading grouped by each school is as follows:
+* Filter the original data set to only keep passing students (similar to the Excel filter)
+* Apply **groupby** and the aggregating function **count** to get counts per school.
 
 ```
 # Calculate the passing scores by creating a filtered DataFrame.
@@ -71,7 +72,7 @@ For the second and third attributes, since they are **ranges**, we apply a bucke
 | (630, 645] | 4 |
 | (645, 675] | 3 |
 
-Similarly, for the **number of students** atttibute, the following buckets are chosen:
+Similarly, for the **number of students** atttibute, the following buckets are chosen (it is to be noted that the school distribution is not fair in this bucketing strategy):
 
 | Number of students (range) | Number of Schools | 
 | -------------------------- |-------------------|
@@ -96,3 +97,24 @@ per_school_summary_df["School Size"] = pd.cut(per_school_summary_df["Total Stude
 # Calculate averages for the desired columns. 
 size_math_scores = per_school_summary_df.groupby(["School Size"]).mean()["Average Math Score"]
 ```
+
+# Results
+
+## District Results
+The following seven metrics are collected for the total district analysis. We will note for each of these metrics how changes in the input data (removing all math and reading scores of all *9th graders* from the *Thomas High School*) affected it.
+
+| Metric | Prior to Change | After Data Change | Impact |
+| ------ |-----------------|-------------------|--------|
+| **Total Students** | 39,170 | 38,709 | Reduced by 461, exactly the number of 9th graders of Thomas High School |
+| **Total Budget** | $24,649,428 | $24,649,428 | Unaffected |
+| **Average Math Score** | 79 | 78.9 | Dipped slightly |
+| **Average Reading Score** | 81.9 | 81.9 | Unaffected |
+| **Math Passing %** | 75% | 74.8% | Dipped slightly |
+| **Reading Passing %** | 85.8% | 85.7% | Dipped slightly |
+| **Overall Passing %** | 65.2% | 64.9% | Dipped slightly |
+
+While it may be tempting to conclude that the omission of Thomas High School's 9th graders caused the overall passing percentage numbers to dip, we would have to examine how that omission actually impacted Thomas High School itself. It is possible that Thomas High School is a high performing school, and omission of **any** subset of students would negatively affect the overall district numbers.
+
+## Impact on Thomas High School
+
+We will focus on average scores and passing percentages before and after the data changes 
