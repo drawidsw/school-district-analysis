@@ -118,3 +118,25 @@ While it may be tempting to conclude that the omission of Thomas High School's 9
 ## Impact on Thomas High School
 
 We will focus on average scores and passing percentages before and after the data changes 
+
+| Metric | Prior to Change | After Data Change | Impact |
+| ------ |-----------------|-------------------|--------|
+| **Average Math Score** | 83.4 | 83.4 | Unaffected |
+| **Average Reading Score** | 83.8 | 83.9 | Increased slightly |
+| **Math Passing %** | 93.3% | 93.2% | Dipped slightly |
+| **Reading Passing %** | 97.3% | 97% | Dipped slightly |
+| **Overall Passing %** | 90.9% | 90.6% | Dipped slightly |
+
+It can be seen that the average scores are largely unaffected, but there are slight dips in passing percentages.
+
+It would be advantageous to specifically analyze data of Thomas High School's 9th graders, which we didn't do in this exercise.
+
+# Summary
+
+After data fixing, the following changes are made to the district analysis:
+
+* Total students considered in the analysis reduced from 39,170 to 38,709.
+* Average math score dropped from 79 to 78.9.
+* Math passing percentage reduced from 75% to 74.8%.
+* Reading passing percentage reduced from 85.8% to 85.7%.
+* Overall passing percentage reduced from 65.2% to 64.9%.
