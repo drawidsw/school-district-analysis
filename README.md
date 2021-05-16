@@ -52,3 +52,5 @@ per_school_passing_reading = per_school_passing_reading.groupby(["school_name"])
 ```
 
 A snapshot of per-school summary is shown as below.
+![image_name](Images/per_school.png)
+
