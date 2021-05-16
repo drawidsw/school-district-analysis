@@ -19,8 +19,9 @@ Ultimately, the goal of the exercise is to determine if any (or several) of the 
 
 We used the Jupyter notebook and Python's pandas module to analyze the data. In a nitshell, the pandas model provides us with:
 
-* Dataframes: A fataframe is a table where each row is indexed. This is Excel's equivalent of a spreadsheet.
+* Dataframes: A dataframe is a table where each row is indexed. This is Excel's equivalent of a spreadsheet.
 * Series: A series is a specific column from the dataframe, where each entry is indexed as well. This is Excel's equivalent of a column.
+* A lot of utility functions to manipulate dataframes and series.
 
 Using Python's pandas module and the Jupyter notebook gives us several advantages over using Excel. Some of them are listed below.
 * Python is a widespread and a general purpose programming language with a lot of inbuilt support for various data structrutes (such as lists, tuples, dictionaries), string manipulation and offers many add-on packages. Python is superior to VBA (Excel's programming language) in that regard.
