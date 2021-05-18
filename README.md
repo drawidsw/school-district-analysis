@@ -17,7 +17,7 @@ Ultimately, the goal of the exercise is to determine if any (or several) of the 
 
 # Methodology
 
-We used the Jupyter notebook and Python's pandas module to analyze the data. In a nitshell, the pandas model provides us with:
+We used the Jupyter notebook and Python's pandas module to analyze the data. In a nutshell, the pandas model provides us with:
 
 * Dataframes: A dataframe is a table where each row is indexed. This is the equivalent of an Excel spreadsheet.
 * Series: A series is a specific column from the dataframe, where each entry is indexed as well. This is the equivalent of an Excel column.
